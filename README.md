@@ -17,9 +17,9 @@ Número de processo CNJ ✅
 
 CRM ✅
 
-CREA
+CREA ✅
 
-CRC
+CRC ✅
 
 CAU
 

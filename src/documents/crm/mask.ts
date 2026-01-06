@@ -4,7 +4,8 @@ import { isValidUF } from "../../shared/ufs.js";
 export function maskCRM(crm: string): string {
     if (!crm) return "";
 
-    const cleaned = normalizeUppercase(removeSeparators(crm));
+    const cleaned = normalizeUppercase(removeSeparators(crm))
+        .replace(/^CRM/, "");
 
     // Allow incomplete numbers to mask
     const match = cleaned.match(/^([A-Z]{2})(\d{1,7})$/);

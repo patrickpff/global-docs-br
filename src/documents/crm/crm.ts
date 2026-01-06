@@ -4,7 +4,7 @@ import { validateCRM } from "./validate.js";
 
 export const CRM: DocumentValidator = {
     type: "CRM",
-    description: "Registro de médico no Conselho Regional de Medicina (CRM).",
+    description: "Council of Regional Medicine Registration (CRM) in Brazil.",
     validate: validateCRM,
     mask: maskCRM
 }

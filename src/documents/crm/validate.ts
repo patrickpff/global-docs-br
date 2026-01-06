@@ -5,6 +5,7 @@ export function validateCRM(crm: string): boolean {
     if (!crm) return false;
 
     const cleaned = normalizeUppercase(removeSeparators(crm))
+        .replace(/^CRM/, "");
 
     /**
      * UF + number (4 to 7 digits)
