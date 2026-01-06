@@ -11,11 +11,11 @@ CNPJ ✅
  
 OAB ✅
 
-Número de processo CNJ
+Número de processo CNJ ✅
 
 🔥 Prioridade 2 (profissionais)
 
-CRM
+CRM ✅
 
 CREA
 
