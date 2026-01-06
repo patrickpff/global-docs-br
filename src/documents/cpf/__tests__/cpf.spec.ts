@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { CPF } from '../cpf.js';
 
-describe('cpf', () => {
+describe('CPF DocumentValidator', () => {
     it("should expose the correct type", () => {
         expect(CPF.type).toBe("CPF");
     });

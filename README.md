@@ -5,11 +5,11 @@ Brazilian document validators and formatters for global-docs.
 
 CPF ✅
 
-RG
+RG ✅
 
-CNPJ
-
-OAB
+CNPJ ✅
+ 
+OAB ✅
 
 Número de processo CNJ
 
