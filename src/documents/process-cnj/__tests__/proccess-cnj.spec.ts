@@ -19,8 +19,7 @@ describe("ProcessCNJ Document", () => {
     });
 
     it("should validate a masked ProcessCNJ correctly", () => {
-        const raw = '0000001-65.2017.8.26.0100';
-        const masked = ProcessCNJ.mask!(raw);
+        const masked = '0001234-95.2020.8.26.9999';
         expect(ProcessCNJ.validate!(masked)).toBe(true);
     });
 

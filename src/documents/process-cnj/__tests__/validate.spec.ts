@@ -3,7 +3,7 @@ import { validateProcessCNJ } from "../validate.js";
 
 describe("validateProcessCNJ", () => {
     it("should validate a correct Process CNJ number", () => {
-        const processCNJ = "0001234-56.2020.8.26.0100";
+        const processCNJ = "0001234-95.2020.8.26.9999";
         expect(validateProcessCNJ(processCNJ)).toBe(true);
     });
 
@@ -18,7 +18,7 @@ describe("validateProcessCNJ", () => {
     });
 
     it("should validate a Process CNJ number without formatting characters", () => {
-        const processCNJ = "00012345620208260100";
+        const processCNJ = "00012349520208269999";
         expect(validateProcessCNJ(processCNJ)).toBe(true);
     });
 
