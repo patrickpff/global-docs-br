@@ -12,7 +12,5 @@ export function validateOAB(oab: string): boolean {
 
     const uf = match[1];
 
-    if (!isValidUF(uf)) return false;
-
-    return true;
+    return isValidUF(uf);
 }

@@ -23,13 +23,13 @@ CRC ✅
 
 CAU ✅
 
-CRO
+CRO ✅
 
 🔥 Prioridade 3 (complementares)
 
-Título de eleitor
+Título de eleitor (colocar descrição) ✅
 
-CNH
+CNH ✅
 
 Passaporte
 
