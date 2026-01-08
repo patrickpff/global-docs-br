@@ -33,4 +33,4 @@ CNH ✅
 
 Passaporte ✅
 
-IE / IM
+IE (format IE source: https://www.cigam.com.br/wiki/index.php?title=Qual_o_formato_da_Inscrição_Estadual_por_Estado%3F)
