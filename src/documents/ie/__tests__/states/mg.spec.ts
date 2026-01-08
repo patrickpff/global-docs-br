@@ -10,7 +10,7 @@ describe("MG IE", () => {
         });
 
         it ("accepts valid IE", () => {
-            const ie = makeValidMGIE("12345678901");
+            const ie = makeValidMGIE();
             expect(MG_IE.validate(ie)).toBe(true);
         })
 

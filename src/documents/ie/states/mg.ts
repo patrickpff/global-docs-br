@@ -12,7 +12,7 @@ export const MG_IE: IEStateValidator & IEStateMask = {
         const dv2 = Number(digits[12]);     // 13º dígito
 
         // -------------------------
-        // Calcula DV1
+        // Calculate DV1
         // -------------------------
         const baseWithZero = base.slice(0, 3) + "0" + base.slice(3);
         let sum1 = 0;
@@ -29,7 +29,7 @@ export const MG_IE: IEStateValidator & IEStateMask = {
         if (calculatedDV1 !== dv1) return false;
 
         // -------------------------
-        // Calcula DV2
+        // Calculate DV2
         // -------------------------
         const fullBase = digits.slice(0, 12);
         const weights = [3, 2, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2];

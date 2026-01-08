@@ -5,41 +5,27 @@ export const AC_IE: IEStateValidator & IEStateMask = {
         if (!value) return false;
 
         const digits = value.replace(/\D/g, "");
-        if (digits.length !== 13) return false; // IE MG tem 13 dígitos
 
-        const base = digits.slice(0, 11);   // primeiros 11 dígitos
-        const dv1 = Number(digits[11]);     // 12º dígito
-        const dv2 = Number(digits[12]);     // 13º dígito
+        // IE do AC tem 13 dígitos
+        if (digits.length !== 13) return false;
 
-        // -------------------------
-        // Calcula DV1
-        // -------------------------
-        const baseWithZero = base.slice(0, 3) + "0" + base.slice(3);
-        let sum1 = 0;
-        let weight = 1;
+        // Deve começar com 01
+        if (!digits.startsWith("01")) return false;
 
-        for (const digit of baseWithZero) {
-            const product = Number(digit) * weight;
-            sum1 += Math.floor(product / 10) + (product % 10);
-            weight = weight === 1 ? 2 : 1;
+        const base = digits.slice(0, 12);
+        const dv = Number(digits[12]);
+
+        const weights = [4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+        let sum = 0;
+        for (let i = 1; i <= 11; i++) {
+            sum += Number(base[i]) * weights[i - 1];
         }
 
-        const nextTen = Math.ceil(sum1 / 10) * 10;
-        const calculatedDV1 = nextTen - sum1;
-        if (calculatedDV1 !== dv1) return false;
+        const mod = sum % 11;
+        const calculatedDV = mod < 2 ? 0 : 11 - mod;
 
-        // -------------------------
-        // Calcula DV2
-        // -------------------------
-        const fullBase = digits.slice(0, 12);
-        const weights = [3, 2, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
-        let sum2 = 0;
-        for (let i = 0; i < 12; i++) {
-            sum2 += Number(fullBase[i]) * weights[i];
-        }
-        const mod = sum2 % 11;
-        const calculatedDV2 = mod < 2 ? 0 : 11 - mod;
-        return calculatedDV2 === dv2;
+        return calculatedDV === dv;
     },
 
     mask(value: string): string {
