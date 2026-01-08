@@ -1,0 +1,38 @@
+import { UF } from "../../shared/ufs.js";
+import { AC_IE } from "./states/ac.js";
+import { MG_IE } from "./states/mg.js";
+import { IEStateMask, IEStateValidator } from "./types.js";
+
+const stateInfo = { 
+    AC: AC_IE,
+    AL: null,
+    AP: null,
+    AM: null,
+    BA: null,
+    CE: null,
+    DF: null,
+    ES: null,
+    GO: null,
+    MA: null,
+    MT: null,
+    MS: null,
+    MG: MG_IE,
+    PA: null,
+    PB: null,
+    PR: null,
+    PE: null,
+    PI: null,
+    RJ: null,
+    RN: null,
+    RS: null,
+    RO: null,
+    RR: null,
+    SC: null,
+    SP: null,
+    SE: null,
+    TO: null,
+}
+// remove null after finished
+export const validatorsByUF: Record<UF, IEStateValidator | null> = stateInfo;
+
+export const masksByUF: Record<UF, IEStateMask | null> = stateInfo;
