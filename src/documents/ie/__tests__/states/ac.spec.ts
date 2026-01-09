@@ -1,6 +1,4 @@
 import { describe, it, expect } from "vitest";
-import { validateIE } from "../../validate.js";
-import { makeValidMGIE } from "../helpers/mg.js";
 import { AC_IE } from "../../states/ac.js";
 import { makeValidACIE } from "../helpers/ac.js";
 

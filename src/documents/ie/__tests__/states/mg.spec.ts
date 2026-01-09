@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
 import { MG_IE } from "../../states/mg.js"
-import { validateIE } from "../../validate.js";
 import { makeValidMGIE } from "../helpers/mg.js";
 
 describe("MG IE", () => {

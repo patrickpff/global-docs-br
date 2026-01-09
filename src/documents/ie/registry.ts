@@ -4,6 +4,7 @@ import { AL_IE } from "./states/al.js";
 import { AM_IE } from "./states/am.js";
 import { AP_IE } from "./states/ap.js";
 import { BA_IE } from "./states/ba.js";
+import { CE_IE } from "./states/ce.js";
 import { MG_IE } from "./states/mg.js";
 import { IEStateMask, IEStateValidator } from "./types.js";
 
@@ -13,7 +14,7 @@ const stateInfo = {
     AP: AP_IE,
     AM: AM_IE,
     BA: BA_IE,
-    CE: null,
+    CE: CE_IE,
     DF: null,
     ES: null,
     GO: null,
