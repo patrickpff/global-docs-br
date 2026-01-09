@@ -1,4 +1,4 @@
- import { IEStateMask, IEStateValidator } from "../types.js";
+import { IEStateMask, IEStateValidator } from "../types.js";
 
 export const AP_IE: IEStateValidator & IEStateMask = {
     validate(value: string): boolean {

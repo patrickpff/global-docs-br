@@ -1,14 +1,18 @@
 import { UF } from "../../shared/ufs.js";
 import { AC_IE } from "./states/ac.js";
+import { AL_IE } from "./states/al.js";
+import { AM_IE } from "./states/am.js";
+import { AP_IE } from "./states/ap.js";
+import { BA_IE } from "./states/ba.js";
 import { MG_IE } from "./states/mg.js";
 import { IEStateMask, IEStateValidator } from "./types.js";
 
 const stateInfo = { 
     AC: AC_IE,
-    AL: null,
-    AP: null,
-    AM: null,
-    BA: null,
+    AL: AL_IE,
+    AP: AP_IE,
+    AM: AM_IE,
+    BA: BA_IE,
     CE: null,
     DF: null,
     ES: null,
