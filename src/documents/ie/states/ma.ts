@@ -1,25 +1,25 @@
 import { IEStateMask, IEStateValidator } from "../types.js";
 
-export const AC_IE: IEStateValidator & IEStateMask = {
+export const MA_IE: IEStateValidator & IEStateMask = {
     validate(value: string): boolean {
         if (!value) return false;
 
         const digits = value.replace(/\D/g, "");
 
-        // AC IE has to be 13 digits long
-        if (digits.length !== 13) return false;
+        // MA IE has to be 9 characters long
+        if (digits.length !== 9) return false;
 
-        // It must start with "01"
-        if (!digits.startsWith("01")) return false;
+        // Required prefix
+        if (!digits.startsWith("12")) return false;
 
-        const base = digits.slice(0, 12);
-        const dv = Number(digits[12]);
+        const base = digits.slice(0, 8);
+        const dv = Number(digits[8]);
 
-        const weights = [4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-
+        const weights = [9, 8, 7, 6, 5, 4, 3, 2];
         let sum = 0;
-        for (let i = 1; i <= 11; i++) {
-            sum += Number(base[i]) * weights[i - 1];
+
+        for (let i = 0; i < 8; i++) {
+            sum += Number(base[i]) * weights[i];
         }
 
         const mod = sum % 11;
@@ -34,14 +34,12 @@ export const AC_IE: IEStateValidator & IEStateMask = {
         const part1 = digits.slice(0, 2);
         const part2 = digits.slice(2, 5);
         const part3 = digits.slice(5, 8);
-        const part4 = digits.slice(8, 11); 
-        const part5 = digits.slice(11, 13);
+        const part4 = digits.slice(8, 9);
 
         let masked = part1;
         if (part2) masked += "." + part2;
         if (part3) masked += "." + part3;
-        if (part4) masked += "/" + part4;
-        if (part5) masked += "-" + part5;
+        if (part4) masked += "-" + part4;
 
         return masked;
     }

@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { ES_IE } from "../../states/es.js"
 import { makeValidESIE } from "../helpers/es.js";
 
-describe("CE IE", () => {
+describe("ES IE", () => {
     describe ("validate", () => {
         it("should expose a validate function", () => {
             expect(typeof ES_IE.validate).toBe("function");

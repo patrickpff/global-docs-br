@@ -7,6 +7,8 @@ import { BA_IE } from "./states/ba.js";
 import { CE_IE } from "./states/ce.js";
 import { DF_IE } from "./states/df.js";
 import { ES_IE } from "./states/es.js";
+import { GO_IE } from "./states/go.js";
+import { MA_IE } from "./states/ma.js";
 import { MG_IE } from "./states/mg.js";
 import { IEStateMask, IEStateValidator } from "./types.js";
 
@@ -19,8 +21,8 @@ const stateInfo = {
     CE: CE_IE,
     DF: DF_IE,
     ES: ES_IE,
-    GO: null,
-    MA: null,
+    GO: GO_IE,
+    MA: MA_IE,
     MT: null,
     MS: null,
     MG: MG_IE,
