@@ -1,11 +1,13 @@
 {
   "name": "global-docs-br",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Brazilian document validators and formatters for global-docs",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
