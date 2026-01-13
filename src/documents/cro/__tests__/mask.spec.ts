@@ -25,4 +25,18 @@ describe("maskCRO", () => {
         const maskedCRO = maskCRO(rawCRO);
         expect(maskedCRO).toBe("");
     });
+
+    it("should return original value when format does not match CRO pattern", () => {
+        expect(maskCRO("ABC123")).toBe("ABC123");
+    });
+
+    it("should return original value when UF is invalid", () => {
+        expect(maskCRO("ZZ1234567")).toBe("ZZ1234567");
+    });
+
+    it("should mask CRO without DV when DV is not provided yet", () => {
+        const rawCRO = "MG123456";
+        const maskedCRO = maskCRO(rawCRO);
+        expect(maskedCRO).toBe("CRO-MG 123456");
+    });
 });

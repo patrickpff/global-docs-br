@@ -6,7 +6,7 @@ export const GO_IE: IEStateValidator & IEStateMask = {
 
         const digits = value.replace(/\D/g, "");
 
-        // GO IE has to be 9 digits long
+        // GO IE must have exactly 9 digits
         if (digits.length !== 9) return false;
 
         // Valid prefixes
@@ -18,51 +18,31 @@ export const GO_IE: IEStateValidator & IEStateMask = {
             return false;
         }
 
-        const base = digits.slice(0, 7);
-        const dv1 = Number(digits[7]);
-        const dv2 = Number(digits[8]);
+        const base = digits.slice(0, 8);
+        const dv = Number(digits[8]);
 
-        // ========================
-        // DV1
-        // ========================
-        const weightsDV1 = [9, 8, 7, 6, 5, 4, 3];
-        let sum1 = 0;
-
-        for (let i = 0; i < 7; i++) {
-            sum1 += Number(base[i]) * weightsDV1[i];
-        }
-
-        const mod1 = sum1 % 11;
-
-        let calculatedDV1: number;
-
-        if (mod1 === 0) {
-            calculatedDV1 = 0;
-        } else if (mod1 === 1) {
-            const baseNumber = Number(base);
-            calculatedDV1 =
-                baseNumber >= 10103105 && baseNumber <= 10119997 ? 1 : 0;
-        } else {
-            calculatedDV1 = 11 - mod1;
-        }
-
-        if (calculatedDV1 !== dv1) return false;
-
-        // ========================
-        // DV2
-        // ========================
-        const baseWithDV1 = base + dv1;
-        const weightsDV2 = [10, 9, 8, 7, 6, 5, 4, 3];
-        let sum2 = 0;
+        const weights = [9, 8, 7, 6, 5, 4, 3, 2];
+        let sum = 0;
 
         for (let i = 0; i < 8; i++) {
-            sum2 += Number(baseWithDV1[i]) * weightsDV2[i];
+            sum += Number(base[i]) * weights[i];
         }
 
-        const mod2 = sum2 % 11;
-        const calculatedDV2 = mod2 < 2 ? 0 : 11 - mod2;
+        const mod = sum % 11;
 
-        return calculatedDV2 === dv2;
+        let calculatedDV: number;
+
+        if (mod === 0) {
+            calculatedDV = 0;
+        } else if (mod === 1) {
+            const baseNumber = Number(base);
+            calculatedDV =
+                baseNumber >= 10103105 && baseNumber <= 10119997 ? 1 : 0;
+        } else {
+            calculatedDV = 11 - mod;
+        }
+
+        return calculatedDV === dv;
     },
 
     mask(value: string): string {

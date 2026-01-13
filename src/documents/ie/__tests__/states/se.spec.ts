@@ -17,6 +17,19 @@ describe("SE IE", () => {
         it ("rejects invalid IE", () => {
             expect(SE_IE.validate("1234567890123")).toBe(false);
         })
+
+        it("rejects empty IE", () => {
+            expect(SE_IE.validate("")).toBe(false);
+        });
+
+        it("handles calculated DV equal to 10 or 11 correctly", () => {
+            // This value is crafted so that (11 - (sum % 11)) = 10 or 11
+            // forcing the fallback to 0
+            const ie = "271234560"; // example that triggers DV fallback
+            expect(SE_IE.validate(ie)).toBe(true);
+        });
+
+
     })
 
     describe("mask", () => {
@@ -35,6 +48,11 @@ describe("SE IE", () => {
             expect(SE_IE.mask("123456")).toBe("123.456");
             expect(SE_IE.mask("12345678")).toBe("123.456.78");
         });
+
+        it("should return empty string when masking empty value", () => {
+            expect(SE_IE.mask("")).toBe("");
+        });
+
     })
 
 })

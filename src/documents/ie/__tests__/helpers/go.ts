@@ -1,51 +1,108 @@
 export function makeValidGOIE(): string {
-    // Valid prefixes
     const prefixes = ["10", "11", "15"];
     const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
 
-    // Generate the 5 random digits for the base (total base size = 7)
-    const randomDigits = Array.from({ length: 5 }, () =>
+    // Remaining digits to complete 8-digit base
+    const remainingDigits = Array.from({ length: 6 }, () =>
         Math.floor(Math.random() * 10)
     ).join("");
 
-    const base = prefix + randomDigits;
+    const base = prefix + remainingDigits; // 8 digits
 
-    // ========================
-    // DV1
-    // ========================
-    const weightsDV1 = [9, 8, 7, 6, 5, 4, 3];
-    let sum1 = 0;
-
-    for (let i = 0; i < 7; i++) {
-        sum1 += Number(base[i]) * weightsDV1[i];
-    }
-
-    const mod1 = sum1 % 11;
-
-    let dv1: number;
-
-    if (mod1 === 0) {
-        dv1 = 0;
-    } else if (mod1 === 1) {
-        const baseNumber = Number(base);
-        dv1 = baseNumber >= 10103105 && baseNumber <= 10119997 ? 1 : 0;
-    } else {
-        dv1 = 11 - mod1;
-    }
-
-    // ========================
-    // DV2
-    // ========================
-    const baseWithDV1 = base + dv1;
-    const weightsDV2 = [10, 9, 8, 7, 6, 5, 4, 3];
-    let sum2 = 0;
+    const weights = [9, 8, 7, 6, 5, 4, 3, 2];
+    let sum = 0;
 
     for (let i = 0; i < 8; i++) {
-        sum2 += Number(baseWithDV1[i]) * weightsDV2[i];
+        sum += Number(base[i]) * weights[i];
     }
 
-    const mod2 = sum2 % 11;
-    const dv2 = mod2 < 2 ? 0 : 11 - mod2;
+    const mod = sum % 11;
 
-    return base + dv1 + dv2;
+    let dv: number;
+
+    if (mod === 0) {
+        dv = 0;
+    } else if (mod === 1) {
+        const baseNumber = Number(base);
+        dv =
+            baseNumber >= 10103105 && baseNumber <= 10119997
+                ? 1
+                : 0;
+    } else {
+        dv = 11 - mod;
+    }
+
+    return base + dv;
+}
+
+export function makeValidGOIEWithMod1(
+    forceSpecialRange = false
+): string {
+    let attempts = 0;
+
+    while (attempts < 2000) {
+        attempts++;
+
+        const prefixes = ["10", "11", "15"];
+        const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+
+        const remainingDigits = Array.from({ length: 6 }, () =>
+            Math.floor(Math.random() * 10)
+        ).join("");
+
+        const base = prefix + remainingDigits;
+        const baseNumber = Number(base);
+
+        const weights = [9, 8, 7, 6, 5, 4, 3, 2];
+        let sum = 0;
+
+        for (let i = 0; i < 8; i++) {
+            sum += Number(base[i]) * weights[i];
+        }
+
+        const mod = sum % 11;
+
+        if (mod !== 1) continue;
+
+        const isSpecialRange =
+            baseNumber >= 10103105 && baseNumber <= 10119997;
+
+        if (forceSpecialRange && !isSpecialRange) continue;
+        if (!forceSpecialRange && isSpecialRange) continue;
+
+        const dv = isSpecialRange ? 1 : 0;
+
+        return base + dv;
+    }
+
+    throw new Error("Could not generate GO IE for desired mod === 1 condition");
+}
+
+export function makeValidGOIESpecialRange(): string {
+    let attempts = 0;
+
+    while (attempts < 2000) {
+        attempts++;
+
+        const baseNumber =
+            Math.floor(Math.random() * (10119997 - 10103105 + 1)) +
+            10103105;
+
+        const base = baseNumber.toString();
+
+        const weights = [9, 8, 7, 6, 5, 4, 3, 2];
+        let sum = 0;
+
+        for (let i = 0; i < 8; i++) {
+            sum += Number(base[i]) * weights[i];
+        }
+
+        const mod = sum % 11;
+
+        if (mod === 1) {
+            return base + "1";
+        }
+    }
+
+    throw new Error("Could not generate GO IE in special range");
 }
