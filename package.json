@@ -60,5 +60,8 @@
       "node_modules",
       "dist"
     ]
+  },
+  "dependencies": {
+    "global-docs": "^0.1.0"
   }
 }
