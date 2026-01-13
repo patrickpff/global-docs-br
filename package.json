@@ -4,16 +4,20 @@
   "description": "Brazilian document validators and formatters for global-docs",
   "type": "module",
   "main": "dist/index.js",
-  "types": "dist/index.d.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
   "scripts": {
     "build": "tsc",
+    "prepublishOnly": "npm run build",
     "test": "vitest",
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage"
   },
   "exports": {
-    ".": "./src/index.js",
-    "./documents/cpf": "./dist/documents/cpf/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
   "repository": {
     "type": "git",
@@ -23,20 +27,13 @@
     "global-docs",
     "documents",
     "brazil",
-    "cau",
-    "cnh",
-    "cnpj",
     "cpf",
-    "crc",
-    "crea",
-    "crm",
-    "cro",
+    "cnpj",
+    "rg",
     "ie",
     "oab",
+    "cnh",
     "passport",
-    "process-cnj",
-    "rg",
-    "voter-registration",
     "validation",
     "mask"
   ],
@@ -46,22 +43,13 @@
     "url": "https://github.com/patrickpff/global-docs-br/issues"
   },
   "homepage": "https://github.com/patrickpff/global-docs-br#readme",
+  "dependencies": {
+    "global-docs": "^0.1.0"
+  },
   "devDependencies": {
     "@types/node": "^25.0.3",
     "@vitest/coverage-v8": "^4.0.16",
     "typescript": "^5.9.3",
     "vitest": "^4.0.16"
-  },
-  "vitest": {
-    "include": [
-      "src/**/*.spec.ts"
-    ],
-    "exclude": [
-      "node_modules",
-      "dist"
-    ]
-  },
-  "dependencies": {
-    "global-docs": "^0.1.0"
   }
 }
