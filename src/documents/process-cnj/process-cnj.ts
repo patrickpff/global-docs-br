@@ -1,4 +1,4 @@
-import { DocumentValidator } from "../../index.js";
+import { DocumentValidator } from "global-docs";
 import { maskProcessCNJ } from "./mask.js";
 import { validateProcessCNJ } from "./validate.js";
 

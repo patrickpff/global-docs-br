@@ -1,4 +1,4 @@
-import { DocumentValidator } from "../../index.js";
+import { DocumentValidator } from "global-docs";
 import { UF } from "../../shared/ufs.js";
 import { maskIE } from "./mask.js";
 import { validateIE } from "./validate.js";

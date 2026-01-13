@@ -1,4 +1,4 @@
-import { DocumentValidator } from "../../index.js";
+import { DocumentValidator } from "global-docs";
 import { maskCNPJ } from "./mask.js";
 import { validateCNPJ } from "./validate.js";
 
