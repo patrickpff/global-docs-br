@@ -10,6 +10,22 @@ import { ES_IE } from "./states/es.js";
 import { GO_IE } from "./states/go.js";
 import { MA_IE } from "./states/ma.js";
 import { MG_IE } from "./states/mg.js";
+import { MS_IE } from "./states/ms.js";
+import { MT_IE } from "./states/mt.js";
+import { PA_IE } from "./states/pa.js";
+import { PB_IE } from "./states/pb.js";
+import { PE_IE } from "./states/pe.js";
+import { PI_IE } from "./states/pi.js";
+import { PR_IE } from "./states/pr.js";
+import { RJ_IE } from "./states/rj.js";
+import { RN_IE } from "./states/rn.js";
+import { RO_IE } from "./states/ro.js";
+import { RS_IE } from "./states/rs.js";
+import { SC_IE } from "./states/sc.js";
+import { SE_IE } from "./states/se.js";
+import { SP_IE } from "./states/sp.js";
+import { TO_IE } from "./states/to.js";
+import { RR_IE } from "./states/rr.js";
 import { IEStateMask, IEStateValidator } from "./types.js";
 
 const stateInfo = { 
@@ -23,23 +39,23 @@ const stateInfo = {
     ES: ES_IE,
     GO: GO_IE,
     MA: MA_IE,
-    MT: null,
-    MS: null,
+    MT: MT_IE,
+    MS: MS_IE,
     MG: MG_IE,
-    PA: null,
-    PB: null,
-    PR: null,
-    PE: null,
-    PI: null,
-    RJ: null,
-    RN: null,
-    RS: null,
-    RO: null,
-    RR: null,
-    SC: null,
-    SP: null,
-    SE: null,
-    TO: null,
+    PA: PA_IE,
+    PB: PB_IE,
+    PR: PR_IE,
+    PE: PE_IE,
+    PI: PI_IE,
+    RJ: RJ_IE,
+    RN: RN_IE,
+    RS: RS_IE,
+    RO: RO_IE,
+    RR: RR_IE,
+    SC: SC_IE,
+    SP: SP_IE,
+    SE: SE_IE,
+    TO: TO_IE,
 }
 // remove null after finished
 export const validatorsByUF: Record<UF, IEStateValidator | null> = stateInfo;

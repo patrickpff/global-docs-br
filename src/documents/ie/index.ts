@@ -1,1 +1,2 @@
-export { IE } from "./ie.js"
+export * from "./ie.js"
+export * from "./types.js"

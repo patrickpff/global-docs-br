@@ -9,7 +9,7 @@ export type IEContext = {
 
 export const IE: DocumentValidator<IEContext> = {
     type: "IE",
-    description: "Brazilian state registration. Identify ICMS taxpayers along the department of finance (SEFAZ) from each brazilian state. Validation depends on the state.",
+    description: "“Brazilian State Registration (Inscrição Estadual). Identifies ICMS taxpayers registered with each state tax authority (SEFAZ). Validation rules vary by state.",
     validate (ie, context) {
         if(!context?.uf) return false;
         return validateIE(ie, context.uf);
