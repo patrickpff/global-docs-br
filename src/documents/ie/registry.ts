@@ -56,8 +56,7 @@ const stateInfo = {
     SP: SP_IE,
     SE: SE_IE,
     TO: TO_IE,
-}
-// remove null after finished
-export const validatorsByUF: Record<UF, IEStateValidator | null> = stateInfo;
+} satisfies Record<UF, IEStateValidator & IEStateMask>
 
-export const masksByUF: Record<UF, IEStateMask | null> = stateInfo;
+export const validatorsByUF: Record<UF, IEStateValidator> = stateInfo;
+export const masksByUF: Record<UF, IEStateMask> = stateInfo;
