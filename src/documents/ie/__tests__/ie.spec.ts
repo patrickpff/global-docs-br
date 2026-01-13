@@ -18,15 +18,40 @@ describe("IE DocumentValidator", () => {
         expect(typeof IE.mask).toBe("function");
     });
 
-    // it("should validate a masked IE correctly", () => {
-    //     const raw = '1345678900013';
-    //     const masked = IE.mask!(raw);
-    //     expect(IE.validate!(masked)).toBe(true);
-    // });
+    // ========================
+    // validate
+    // ========================
 
-    // it("should invalidate an incorrect OAB through the validate function", () => {
-    //     const invalidOAB = 'MG12X45X';
-    //     expect(OAB.validate!(invalidOAB)).toBe(false);
-    // });
+    it("should return false if context is missing", () => {
+        expect(IE.validate("123", undefined as any)).toBe(false);
+    });
+
+    it("should return false if uf is missing in context", () => {
+        expect(IE.validate("123", {} as any)).toBe(false);
+    });
+
+    it("should validate IE when uf is provided", () => {
+        // valid MG IE (generated or known-valid)
+        const ie = "0623079040081";
+        const result = IE.validate(ie, { uf: "MG" });
+        expect(result).toBe(true);
+    });
+
+    // ========================
+    // maks
+    // ========================
+    it("should return raw value if context is missing", () => {
+        expect(IE.mask!("123456", undefined as any)).toBe("123456");
+    });
+
+    it("should return raw value if uf is missing in context", () => {
+        expect(IE.mask!("123456", {} as any)).toBe("123456");
+    });
+
+    it("should mask IE when uf is provided", () => {
+        const raw = "062307904008";
+        const masked = IE.mask!(raw, { uf: "MG" });
+        expect(masked).toBe("06.230.790/4008");
+    });
 });
 
