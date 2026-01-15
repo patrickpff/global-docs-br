@@ -144,17 +144,22 @@ First, install the package:
 npm install global-docs-br
 ```
 
-Then, register Brazilian documents:
+You can use Brazilian document validators directly, without any registration step:
 
 ```ts
-import { CPF, CNPJ } from "global-docs-br";
-import { IE } from "global-docs-br";
+import { CPF, CNPJ, IE } from "global-docs-br";
 
-CPF.validate("11144477735");              // true
-CPF.mask("11144477735");                  // "111.444.777-35"
+// CPF
+CPF.validate("11144477735");            // true
+CPF.mask("11144477735");                // "111.444.777-35"
 
-IE.validate("123456789", { uf: "GO" });   // false
-IE.mask("123456789", { uf: "GO" });       // "12.345.678-9"
+// CNPJ
+CNPJ.validate("11444777000161");        // true
+CNPJ.mask("11444777000161");            // "11.444.777/0001-61"
+
+// State Registration (IE) — requires UF context
+IE.validate("123456789", { uf: "GO" }); // false
+IE.mask("123456789", { uf: "GO" });     // "12.345.678-9"
 ```
 > No registration step is required when using documents directly.
 
@@ -162,23 +167,45 @@ IE.mask("123456789", { uf: "GO" });       // "12.345.678-9"
 
 ### 🔗 Integration with `global-docs`
 
-If you are using the core `global-docs` engine with country-based resolution, you must register Brazilian documents explicitly:
+If you are using the **core** `global-docs` **engine** with country-based resolution, you must explicitly register Brazilian documents:
+
+#### 1️⃣ Register Brazilian documents
 
 ```ts
 import { registerBrazilDocuments } from "global-docs-br";
-import { validate } from "global-docs";
 
 registerBrazilDocuments();
-
-validate("CPF", "11144477735", { country: "BR" }); // true
-validate("CNPJ", "11444777000161", { country: "BR" });
 ```
 
-This step registers all Brazilian document validators under country code `BR`.
+This registers all Brazilian document validators under country code `BR`.
 
-> `registerBrazilDocuments` is optional.
+---
+#### 2️⃣ Validate and mask using the engine API
 
-> Use it only when relying on the dynamic registry mechanism of `global-docs`.
+```ts
+import { validate, mask } from "global-docs";
+
+// Validation
+validate("BR", "CPF", "11144477735");        // true
+validate("BR", "CNPJ", "11444777000161");    // true
+
+// Masking
+mask("BR", "CPF", "11144477735");            // "111.444.777-35"
+mask("BR", "CNPJ", "11444777000161");        // "11.444.777/0001-61"
+```
+
+You may also use the path-based helpers:
+
+```ts
+import { validatePath, maskPath } from "global-docs";
+
+validatePath("BR.CPF", "11144477735"); // true
+maskPath("BR.CPF", "11144477735");     // "111.444.777-35"
+```
+
+> `registerBrazilDocuments` is **only required** when using the dynamic country based registry mechanism provided by `global-docs`.
+
+> If you are importing documents directly from `global-docs-br`, registration is **not needed**.
 
 ---
 ## 🧪 Testing
@@ -214,7 +241,7 @@ documents/
 │  │  ├─ ac.ts
 │  │  ├─ al.ts
 │  │  ├─ am.ts
-│  │  ├─ ap.ts
+│  │  ├─ ap0.ts
 │  │  └─ ...
 │  └─ __tests__/
 │     ├─ registry.spec.ts
