@@ -1,6 +1,6 @@
 {
   "name": "global-docs-br",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Brazilian document validators and formatters for global-docs",
   "type": "module",
   "main": "dist/index.js",
