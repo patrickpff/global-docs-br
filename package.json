@@ -2,29 +2,6 @@
   "name": "global-docs-br",
   "version": "0.1.3",
   "description": "Brazilian document validators and formatters for global-docs",
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "scripts": {
-    "build": "tsc",
-    "prepublishOnly": "npm run build",
-    "test": "vitest",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage"
-  },
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/patrickpff/global-docs-br.git"
-  },
   "keywords": [
     "global-docs",
     "documents",
@@ -39,12 +16,35 @@
     "validation",
     "mask"
   ],
-  "author": "Patrick Ferreira",
-  "license": "MIT",
+  "homepage": "https://github.com/patrickpff/global-docs-br#readme",
   "bugs": {
     "url": "https://github.com/patrickpff/global-docs-br/issues"
   },
-  "homepage": "https://github.com/patrickpff/global-docs-br#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrickpff/global-docs-br.git"
+  },
+  "license": "MIT",
+  "author": "Patrick Ferreira",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:run": "vitest run"
+  },
   "dependencies": {
     "global-docs": "^0.1.0"
   },
@@ -53,5 +53,14 @@
     "@vitest/coverage-v8": "^4.0.16",
     "typescript": "^5.9.3",
     "vitest": "^4.0.16"
+  },
+  "vitest": {
+    "include": [
+      "src/**/*.spec.ts"
+    ],
+    "exclude": [
+      "node_modules",
+      "dist"
+    ]
   }
 }
