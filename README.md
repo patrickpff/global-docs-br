@@ -5,7 +5,7 @@ Brazilian document **validators and formatters** for the `global-docs` ecosystem
 This package provides **pure, deterministic and well-tested utilities** to:
 - validate Brazilian documents
 - apply human-readable masks (input/display)
-- generate valid test values (for unit testing only)
+- generate valid test values (intended for unit testing only)
 
 It is designed to be:
 - framework-agnostic
@@ -116,6 +116,7 @@ Masking:
 All masks are designed to work while typing:
 
 ```ts
+// Example (IE - Goiás)
 mask("1234")      → "12.34"
 mask("12345678")  → "12.345.678"
 mask("123456789") → "12.345.678-9"
@@ -132,6 +133,52 @@ Every document validator:
 - never depends on real or sensitive data (LGPD-compliance on development)
 
 > No real personal or company data is used or required.
+
+
+---
+## 🚀 Quick Start (Standalone)
+
+First, install the package:
+
+```bash
+npm install global-docs-br
+```
+
+Then, register Brazilian documents:
+
+```ts
+import { CPF, CNPJ } from "global-docs-br";
+import { IE } from "global-docs-br";
+
+CPF.validate("11144477735");              // true
+CPF.mask("11144477735");                  // "111.444.777-35"
+
+IE.validate("123456789", { uf: "GO" });   // false
+IE.mask("123456789", { uf: "GO" });       // "12.345.678-9"
+```
+> No registration step is required when using documents directly.
+
+---
+
+### 🔗 Integration with `global-docs`
+
+If you are using the core `global-docs` engine with country-based resolution, you must register Brazilian documents explicitly:
+
+```ts
+import { registerBrazilDocuments } from "global-docs-br";
+import { validate } from "global-docs";
+
+registerBrazilDocuments();
+
+validate("CPF", "11144477735", { country: "BR" }); // true
+validate("CNPJ", "11444777000161", { country: "BR" });
+```
+
+This step registers all Brazilian document validators under country code `BR`.
+
+> `registerBrazilDocuments` is optional.
+
+> Use it only when relying on the dynamic registry mechanism of `global-docs`.
 
 ---
 ## 🧪 Testing
